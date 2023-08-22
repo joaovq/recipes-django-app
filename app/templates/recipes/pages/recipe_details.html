@@ -1,0 +1,10 @@
+{% extends 'recipes/partials/home_base.html' %} 
+{% block home_content %}
+    {% include 'global/partials/header_recipes.html' %}
+    <div class="container">
+        <h1>{{recipe.name}}</h1>
+        <p>{{recipe.descriprion}}</p>
+    </div>
+    {% include 'global/partials/footer.html' %}
+{% endblock home_content %}
+    

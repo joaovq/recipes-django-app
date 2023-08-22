@@ -1,0 +1,27 @@
+{% extends 'recipes/pages/home_base.html' %}
+{% block base_title %}
+  {{title|default:"Home | Recipes"}}   
+{% endblock base_title %}
+{% block home_content %}
+  {% include 'global/partials/search_input_recipes.html' %}
+  {% if category is not None %}
+    <div class="container">
+      <h1>
+        {{category.categoryName}}
+      </h1>
+    </div>
+  {% endif %}
+    
+
+    <div class="main-content">
+      {% for recipe in recipes  %}
+          {% include 'recipes/partials/card_recipe.html' %}
+      {% endfor %}
+      
+      {% if recipes|length == 0 %}
+          <h1>Hum... Nenhuma receita foi adicionada até o momento</h1>
+      {% endif %}
+    </div>
+
+    {% include 'global/partials/footer.html' %}
+{% endblock %}
