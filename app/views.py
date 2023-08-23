@@ -1,16 +1,15 @@
 from datetime import date
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
-
 from app.models import Category, Recipes
-from utils.recipes.factory import make_recipe
 
 def home_view(request):
+    recipes =  Recipes.objects.filter(is_published=True).order_by('-id')    
     return render(
         request=request,
         template_name='recipes/pages/home.html', 
         context={
-            'recipes':Recipes.objects.filter(is_published=True).order_by('-id'),
+            'recipes':recipes,
             'is_detail_page': False
         }
     )
@@ -35,5 +34,5 @@ def categories_recipes_view(request, category_id):
         'recipes':recipes,
         'is_detail_page':False,
         'category': category,
-        'title':'Category | Recipes'
+        'title':f"{category.categoryName} | Recipes"
     })

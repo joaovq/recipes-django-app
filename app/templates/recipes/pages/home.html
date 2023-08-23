@@ -16,11 +16,9 @@
     <div class="main-content">
       {% for recipe in recipes  %}
           {% include 'recipes/partials/card_recipe.html' %}
+          {% empty %}
+          <h1>No Recipe Found here! 😞</h1>
       {% endfor %}
-      
-      {% if recipes|length == 0 %}
-          <h1>Hum... Nenhuma receita foi adicionada até o momento</h1>
-      {% endif %}
     </div>
 
     {% include 'global/partials/footer.html' %}
