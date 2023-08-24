@@ -79,3 +79,12 @@ a {
     font-size: 12px;
     padding: .5rem 0rem;
 }
+.content-card-steps-preparation {
+    font-size: 1.4rem;
+}
+
+@media (max-width:800){
+    .main-header-container {
+        font-size: .3rem;
+    }
+}

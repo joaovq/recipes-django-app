@@ -8,6 +8,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.container {
+    padding: 1.5rem; 
+}
+
 
 .main-header-container {
     width: 100%;
@@ -82,4 +86,11 @@ body {
 }
 .main-footer a:hover {
     filter: brightness(.8);
+}
+
+
+@media (max-width:800) {
+    .main-header-container {
+        font-size: .3rem;
+    }
 }

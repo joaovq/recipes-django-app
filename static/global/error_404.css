@@ -1,0 +1,9 @@
+.container-error-not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    gap: 1.5rem;
+    height: 100vh;
+}
