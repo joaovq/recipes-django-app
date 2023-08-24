@@ -4,7 +4,7 @@ from django.urls import reverse
 # install pytest watch for run all test's 
 class RecipesURLsTest(TestCase):
     def test_recipe_home_url_is_correct(self):
-        home_url = reverse('app:home_recipes')
+        home_url = reverse('app:home')
         self.assertEqual(home_url,'/', 'url not equals in view')     
         
     def test_recipes_details_url_is_correct(self):
