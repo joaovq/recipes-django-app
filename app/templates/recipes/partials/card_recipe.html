@@ -1,5 +1,7 @@
-<div class="card-recipe-container">
-    <img src="{{recipe.cover_image.url}}" alt="">
+<div class="card-recipe-container">      
+      {% if recipe.cover_image %}
+        <img src="{{recipe.cover_image.url}}" alt=""> 
+      {% endif %}   
     <div class="content-card">
       <h2 id="card-recipe-title">{{recipe.name}}</h2>
       <br>
@@ -12,7 +14,7 @@
         <i class="fas fa-calendar"></i>&nbsp; {{recipe.created_at|date:"d/m/y"}} às {{recipe.created_at|date:"H:i:s"}}
       </span>
       {% if recipe.category is not None %}
-        <a class="card-details" href="{% url 'category_recipes' recipe.category.id %}">
+        <a class="card-details" href="{% url 'app:category_recipes' recipe.category.id %}">
           <span>
             <i class="fas fa-sort-down"></i> {{recipe.category.categoryName}}
           </span>
@@ -34,7 +36,7 @@
     </div>
     
     {% if is_detail_page is not True %}
-      <a href="{% url 'recipe_details' recipe.id %}">
+      <a href="{% url 'app:recipe_details' recipe.id %}">
         <footer class="container-see-more">
           <i class="fas fa-eye fa-sm fa-fw"></i>&nbsp; Ver mais...
         </footer>

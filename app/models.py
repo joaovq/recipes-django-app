@@ -12,7 +12,7 @@ class Category(models.Model):
 class Recipes(models.Model):
     name = models.TextField(max_length=60)
     description = models.TextField(max_length=60)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     num_preparations = models.IntegerField()
     num_servings = models.IntegerField()
     preparation_time = models.IntegerField()
@@ -24,7 +24,7 @@ class Recipes(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(to=Category, on_delete=models.SET_NULL, null=True, blank=True, default=None) 
     author = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True) 
-    cover_image = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/')
+    cover_image = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')
     def __str__(self) -> str:
         return self.name
     
