@@ -1,8 +1,5 @@
 django==3.2.20
 Pillow==9.5.0
 pytest==7.4.0
-<<<<<<< HEAD
 coverage==7.3.0
-=======
 parameterized==0.9.0
->>>>>>> e47c1784439a5cebe494b9deba35e7cb0f4f4392
