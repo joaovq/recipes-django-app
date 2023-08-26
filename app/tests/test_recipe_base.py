@@ -6,19 +6,15 @@ from django.contrib.auth.models import User
 
 
 class RecipeTestBase(TestCase):
-    def setUp(self) -> None:
-        self.make_recipe()
-        return super().setUp()
-
     def make_recipe(
         self,
-        name='My name Recipe',
+        title='My name Recipe',
         description='My Description',
-        slug='my-name_recipe',
+        slug='my-name-recipe',
         num_preparations=5,
         num_servings=4,
         preparation_time=5,
-        preparation_steps='',
+        preparation_steps='dasdfdds',
         preparation_steps_is_html=False,
         is_published=True,
         servings_unit ='dd',
@@ -32,7 +28,7 @@ class RecipeTestBase(TestCase):
         if author is None:
             author = {}
         return Recipes.objects.create(
-            name=name,
+            title=title,
             description=description,
             slug=slug,
             num_preparations=num_preparations,

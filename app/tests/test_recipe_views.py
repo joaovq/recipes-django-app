@@ -88,11 +88,10 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertEqual(response.status_code, 404) 
           
     def test_category_recipes_view_returns_recipe_with_title_is_correct(self):
-        self.make_recipe()
         needed_title = 'My Test category recipe'
         self.make_recipe(category={'name': needed_title}, author={'username':'joaovq'})
         response = self.client.get(
-            reverse('app:category_recipes',kwargs= {'category_id':2})
+            reverse('app:category_recipes',kwargs= {'category_id':1})
         )
         content_recipes_page = response.content.decode('utf-8')
         self.assertIn(needed_title,content_recipes_page)
