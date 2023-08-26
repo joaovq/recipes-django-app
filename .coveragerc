@@ -1,0 +1,6 @@
+# need install coverage from pip
+# for run: coverage run -m pytest
+# for get coverage in html: coverage html
+[run]
+branch = True
+omit=venv/*,**/*test*.py,manage.py,__localcode/*, project/*
