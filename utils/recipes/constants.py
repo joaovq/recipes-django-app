@@ -1,0 +1,1 @@
+RECIPES_NOT_FOUND_MESSAGE = 'No Recipe Found here!'
