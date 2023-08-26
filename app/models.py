@@ -10,16 +10,17 @@ class Category(models.Model):
     
 # Create your models here.
 class Recipes(models.Model):
-    name = models.TextField(max_length=60)
-    description = models.TextField(max_length=60)
+    title = models.CharField(max_length=60, default='')
+    description = models.CharField(max_length=60)
     slug = models.SlugField(unique=True)
     num_preparations = models.IntegerField()
     num_servings = models.IntegerField()
     preparation_time = models.IntegerField()
+    preparation_time_unit = models.CharField(max_length=65, default='')
     preparation_steps = models.TextField()
     preparation_steps_is_html = models.BooleanField(default=False)
     is_published = models.BooleanField(default=False)
-    servings_unit = models.TextField()
+    servings_unit = models.TextField(max_length=65)
     created_at = models.DateTimeField(auto_created=True,)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(to=Category, on_delete=models.SET_NULL, null=True, blank=True, default=None) 
