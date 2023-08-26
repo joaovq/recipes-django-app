@@ -27,9 +27,5 @@ jobs:
         pip install -r requirements.txt   
     - name: Run Tests
       run: |
-        python manage.py test
-    - name: Coverage Tests
-      run: |
-        coverage run -m pytest 
-        coverage html     
+        python manage.py test  
         
