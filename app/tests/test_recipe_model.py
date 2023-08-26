@@ -35,7 +35,7 @@ class RecipeModelTest(RecipeTestBase):
             
     @parameterized.expand(
         [
-            ('title', 60),
+            ('title', 65),
             ('description', 165),
             ('preparation_time_unit', 65),
             ('servings_unit', 65),
@@ -59,7 +59,7 @@ class RecipeModelTest(RecipeTestBase):
                         self.recipe.full_clean() # AQUI A VALIDAÇÃO OCORRE
         """
         # parameterized      
-        setattr(self.recipe,field, 'A' * (max_length + 1))
+        setattr(self.recipe,field, "A" * (max_length + 1))
         with self.assertRaises(ValidationError):
             self.recipe.full_clean()
     def test_recipe_preparation_steps_is_html_is_false_by_default(self):
@@ -78,3 +78,14 @@ class RecipeModelTest(RecipeTestBase):
             recipe.is_published,
             'Recipe preparation_steps_is_html is not false'
         )    
+    def test_recipe_string_representation_is_correct_return(self):
+        title_string = 'Testing representation string'
+        self.recipe.title = title_string    
+        self.recipe.full_clean()
+        self.recipe.save()
+        recipe_string_representation = str(self.recipe)
+        self.assertEqual(
+            recipe_string_representation,
+            title_string,
+            f"Recipe string representation must be {title_string} but {recipe_string_representation}"
+        )      
