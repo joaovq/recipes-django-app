@@ -11,15 +11,13 @@
       </h1>
     </div>
   {% endif %}
-    
-
     <div class="main-content">
       {% for recipe in recipes  %}
           {% include 'recipes/partials/card_recipe.html' %}
           {% empty %}
           <h1>No Recipe Found here! 😞</h1>
-      {% endfor %}
-    </div>
-
+      {% endfor %}        
+    </div>   
+    {% include 'recipes/partials/pagination.html' %}
     {% include 'global/partials/footer.html' %}
 {% endblock %}

@@ -1,8 +1,8 @@
-<form action="">
+<form action="{% url 'app:search_recipes' %}">
     <div class="container-search">
       <div class="search-content">
-        <input type="text" id="search-recipes-input" placeholder="Search recipes" />
-        <i class="fas fa-search fa-sm fa-fw" id="icon-search"></i>
+        <input name="search" type="text" id="search-recipes-input" value="{{search_term}}" placeholder="Search recipes" required/>
+        <button class="search-button"><i class="fas fa-search fa-sm fa-fw"  id="icon-search"></i></button>
       </div>
     </div>
-  </form>
+</form>

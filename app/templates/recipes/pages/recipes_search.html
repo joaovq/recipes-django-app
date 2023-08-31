@@ -1,0 +1,21 @@
+{% extends 'recipes/pages/home_base.html' %}
+
+{% block base_title %}
+{{title|default:"Search | Recipes"}}
+{% endblock base_title %}
+     
+{% block home_content %}
+{% include 'global/partials/search_input_recipes.html' %}
+<div class="container">
+    <h1>{{title}}</h1>
+  </div>
+<div class="main-content">
+    {% for recipe in recipes  %}
+        {% include 'recipes/partials/card_recipe.html' %}
+        {% empty %}
+        <h1>No Recipe Found here! 😞</h1>
+    {% endfor %}
+  </div>
+  {% include 'global/partials/footer.html' %}
+{% endblock home_content %}
+    

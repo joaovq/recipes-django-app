@@ -1,0 +1,19 @@
+{% if recipes.has_other_pages %}
+  <div class="pages">
+    {% if pagination_range.first_page_out_of_range %}
+      <a href="?page=1{{additional_url_query}}"><div><<< Voltar ao inicio</div></a>
+    {% endif %}
+    {% for page in pagination_range.pagination %}
+      {% if pagination_range.current_page == page %}
+        <a href="?page={{ page }}{{additional_url_query}}" class="page-item-current">{{ page }}</a>
+      {% else %}
+        <a href="?page={{ page }}{{additional_url_query}}" class="page-item">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if pagination_range.last_page_out_of_range %}
+      ...
+      <a href="?page={{ pagination_range.total_pages }}{{additional_url_query}}"><div>Ir até ao final >>></div></a>
+    {% endif %}
+    <div>Total de registros - {{ recipes|length }}</div>
+  </div>
+{% endif %}

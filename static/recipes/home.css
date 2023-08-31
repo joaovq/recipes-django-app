@@ -82,6 +82,13 @@ a {
 .content-card-steps-preparation {
     font-size: 1.4rem;
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:blue;
+    padding: 10rem;
+}
 
 @media (max-width:800){
     .main-header-container {

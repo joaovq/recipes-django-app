@@ -82,7 +82,23 @@ a {
 .content-card-steps-preparation {
     font-size: 1.4rem;
 }
-
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 0.8rem;
+  }
+.pages .page-item {
+    background-color: rgba(0, 162, 255, 0.8);
+    color: aliceblue;
+    padding: .5rem;
+}
+.pages .page-item-current {
+    background-color: rgba(189, 189, 189, 0.8);
+    color: rgb(0, 0, 0);
+    padding: .5rem;
+}
 @media (max-width:800){
     .main-header-container {
         font-size: .3rem;

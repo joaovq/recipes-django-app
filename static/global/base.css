@@ -71,6 +71,12 @@ body {
     transform: scale(1.1);
 }
 
+.search_button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
 .main-footer {
     display: flex;
     align-items: center;

@@ -1,11 +1,10 @@
 {% extends 'global/base.html' %}
-{% block base_css %}
+{% block base_css %}    
     {% load static %}
     <link rel="stylesheet" href="{% static 'recipes/home.css' %}">
 {% endblock base_css %}
 {% block content %}
   {% include 'global/partials/header_recipes.html' %}
   {% block home_content %}
-
   {% endblock %}
 {% endblock %}
