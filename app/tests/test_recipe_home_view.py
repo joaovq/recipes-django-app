@@ -4,6 +4,10 @@ from app.models import Recipes
 from app.tests.test_recipe_base import RecipeTestBase
 from utils.recipes import constants
 from parameterized import parameterized
+from unittest.mock import patch
+import utils.pagination
+
+# patch é utilizado para trocar uma variavel para um teste testes que podemos editar em um teste 
 
 
 class RecipeHomeViewTest(RecipeTestBase):
@@ -79,4 +83,24 @@ class RecipeHomeViewTest(RecipeTestBase):
         )
         pagination_range = response.context['pagination_range']
         self.assertEqual(pagination_range['current_page'], 1)
-        
+    
+    # @patch(target='utils.pagination.PER_PAGES', new=3) other format
+    def test_recipe_home_is_paginated(self):    
+        for i in range(8):
+            needed_title = 'My new recipe in page'    
+            self.make_recipe(
+                title=needed_title,
+                author={'username':f'joaovq{i}'},
+                slug=f'{needed_title}{i}',
+                is_published=True
+            )
+        with patch('app.views.PER_PAGE',new=3):
+            response = self.client.get(
+                reverse('app:home')
+            )                
+            recipes = response.context['recipes']
+            paginator = recipes.paginator
+            self.assertEqual(paginator.num_pages,3)      
+            self.assertEqual(len(paginator.get_page(1)),3)      
+            self.assertEqual(len(paginator.get_page(2)),3)      
+            self.assertEqual(len(paginator.get_page(3)),2)      
