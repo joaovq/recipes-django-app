@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 from app.tests.test_recipe_base import RecipeTestBase

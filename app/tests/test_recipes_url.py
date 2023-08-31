@@ -13,4 +13,8 @@ class RecipesURLsTest(TestCase):
         
     def test_recipes_category_url_is_correct(self):
         recipes_url = reverse('app:category_recipes', kwargs= {'category_id':1})
-        self.assertEqual(recipes_url,'/recipes/category/1/', 'url not equals in view')  
+        self.assertEqual(recipes_url,'/recipes/category/1/', 'url not equals in view')
+        
+    def test_search_recipes_url_is_correct(self):
+        search_recipes_url = reverse('app:search_recipes')
+        self.assertEqual(search_recipes_url,'/recipes/search/', 'url not equals in view')        
