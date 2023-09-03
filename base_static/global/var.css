@@ -2,4 +2,14 @@
     --bg-color: #e9e9e9;
     --bg-color-white: white;
     --text-color-bg-dark: white;
+    --color-info-light:#4d87c442;
+    --color-info-dark:#4d86c4;
+    --color-debug-light:#4d87c442;
+    --color-debug-dark:#4d86c4;
+    --color-success-light:#4a9c5d36;
+    --color-success-dark:#4a9c5d;
+    --color-warning-light:#ffe60849;
+    --color-warning-dark:#ada346;
+    --color-error-light:#da525d4b;
+    --color-error-dark:#da525d;
 }

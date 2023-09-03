@@ -1,3 +1,10 @@
 <header class="main-header-container">
     <a href="{% url 'app:home' %}"><h1><i class="fas fa-address-book"></i> Recipes</h1></a>
+    {% if not is_register_page %}
+        <a href="{% url 'author:register_author' %}">
+            <div id="register-btn">
+                <h6>Register</h6>
+            </div>
+        </a>
+    {% endif %}
 </header>

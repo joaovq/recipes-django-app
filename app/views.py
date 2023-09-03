@@ -4,6 +4,7 @@ from app.models import Category, Recipes
 from django.db.models import Q
 from utils.pagination import make_pagination
 import os
+from django.contrib import messages
 
 PER_PAGE = os.environ.get('PER_PAGE', 6)
 
@@ -58,8 +59,8 @@ def search_recipes_view(request):
         raise Http404
     recipes = Recipes.objects.filter(
         Q(
-          Q(title__icontains=search_term) |
-          Q(description__icontains=search_term)
+          Q(title__icontains= search_term) |
+          Q(description__icontains= search_term)
         ),
         is_published=True
     ).order_by('-id')

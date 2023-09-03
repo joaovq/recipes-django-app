@@ -3,7 +3,9 @@
         "fontawesomefree"
     ],
     "python.testing.pytestArgs": [
-        "app"
+        "app",
+        "author",
+        "utils"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,

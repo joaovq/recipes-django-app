@@ -15,6 +15,7 @@ body {
 
 .main-header-container {
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,6 +25,17 @@ body {
     flex-flow: row nowrap;
     font-size: 1.6rem;
 }
+.main-header-container::after{
+    position:absolute;
+    content: '';
+    height: 2px; 
+    width: 0%;
+    background: rgb(127, 143, 35);
+    bottom: 0;
+    left: 0;
+    transition: ease .5s;
+ }
+.main-header-container:hover::after { width: 100%; }
 
 .main-header-container a {
     color: var(--text-color-bg-dark);
@@ -92,6 +104,76 @@ body {
 }
 .main-footer a:hover {
     filter: brightness(.8);
+}
+
+#register-btn {
+    position: absolute;
+    right: 0;
+    top: 1.4rem;
+    margin: 1rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+#register-btn:hover {
+    background-color: chocolate;
+    transition: all .3s;
+    border: none;
+    transform: scale(1.1);
+}
+
+.home-message {
+    width: 60%;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    animation: slide 1s;
+}
+@keyframes slide {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+.message-success {
+    color: var(--color-success-dark);
+    background-color: var(--color-success-light);
+    border: 2px var(--color-success-dark) solid;
+}
+.message-error {
+    color: var(--color-error-dark);
+    background-color: var(--color-error-light);
+    border: 2px var(--color-error-dark) solid;
+}
+
+.message-debug {
+    color: var(--color-debug-dark);
+    background-color: var(--color-debug-light);
+    border: 2px var(--color-debug-dark) solid;
+}
+.message-warning {
+    color: var(--color-warning-dark);
+    background-color: var(--color-warning-light);
+    border: 2px var(--color-warning-dark) solid;
+}
+.message-info {
+    color: var(--color-info-dark);
+    background-color: var(--color-info-light);
+    border: 2px var(--color-info-dark) solid;
+}
+
+.message-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem;
 }
 
 

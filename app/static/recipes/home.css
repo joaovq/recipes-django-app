@@ -99,8 +99,11 @@ a {
     color: rgb(0, 0, 0);
     padding: .5rem;
 }
-@media (max-width:800){
+@media(max-width:800px){
     .main-header-container {
         font-size: .3rem;
+    }
+    .card-recipe-container {
+        max-width: 50%;
     }
 }
