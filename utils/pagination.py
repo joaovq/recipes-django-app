@@ -2,7 +2,7 @@ import math
 from django.core.paginator import Paginator
 import os
 
-PER_PAGES = int(os.environ.get('PER_PAGE',6))
+PER_PAGES = int(os.environ.get('PER_PAGE',10))
 
 def make_pagination_range(
     page_range,

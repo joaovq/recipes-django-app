@@ -5,7 +5,7 @@ from app.tests.test_recipe_base import RecipeTestBase
 from utils.recipes import constants
 from parameterized import parameterized
 from unittest.mock import patch
-import utils.pagination
+from utils.pagination import PER_PAGES
 
 # patch é utilizado para trocar uma variavel para um teste testes que podemos editar em um teste 
 
@@ -66,7 +66,7 @@ class RecipeHomeViewTest(RecipeTestBase):
             reverse('app:home')
         )
         recipes_in_page = response.context['recipes']
-        self.assertEqual(len(recipes_in_page), 10)
+        self.assertEqual(len(recipes_in_page), PER_PAGES)
         
     @parameterized.expand(
         [
@@ -103,4 +103,8 @@ class RecipeHomeViewTest(RecipeTestBase):
             self.assertEqual(paginator.num_pages,3)      
             self.assertEqual(len(paginator.get_page(1)),3)      
             self.assertEqual(len(paginator.get_page(2)),3)      
-            self.assertEqual(len(paginator.get_page(3)),2)      
+            self.assertEqual(len(paginator.get_page(3)),2)   
+               
+    def test_send_get_request_to_registration_create_view_returns_404(self):
+        response = self.client.get(reverse('author:register_success'))
+        self.assertEqual(response.status_code,404)        

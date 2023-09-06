@@ -2,11 +2,10 @@ from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from app.models import Category, Recipes
 from django.db.models import Q
-from utils.pagination import make_pagination
+from utils.pagination import make_pagination, PER_PAGES
 import os
-from django.contrib import messages
 
-PER_PAGE = os.environ.get('PER_PAGE', 6)
+PER_PAGE = PER_PAGES
 
 def home_view(request):
     recipes = Recipes.objects.filter(is_published=True).order_by('-id')

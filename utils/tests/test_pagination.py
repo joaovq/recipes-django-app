@@ -55,4 +55,4 @@ class PaginationTest(TestCase):
                 page_range= list(range(1,21)),
                 qt_pages =4,
                 current_page=25
-            )['pagination'] 
+            )['pagination']            
