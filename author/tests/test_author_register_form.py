@@ -130,3 +130,20 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
         response = self.client.post(url, data=self.form_data, follow=True)
         msg ='Password and password2 must be equal'
         self.assertNotIn(msg, response.content.decode('utf-8'))         
+    def test_author_create_can_login(self):
+        url = reverse('author:register_success')
+        
+        self.form_data.update({
+            'username' : 'testuser',
+            'password': '@Bc232555',
+            'password2': '@Bc232555',
+        })
+        
+        self.client.post(url, data=self.form_data, follow=True)
+        
+        is_authenticated = self.client.login(
+            username = 'testuser',
+            password = '@Bc232555'
+        )
+        
+        self.assertTrue(is_authenticated)

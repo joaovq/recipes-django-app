@@ -6,12 +6,12 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
+    height: 100%;
 }
 
 .container {
     padding: 1.5rem; 
 }
-
 
 .main-header-container {
     width: 100%;
@@ -106,16 +106,20 @@ body {
     filter: brightness(.8);
 }
 
-#register-btn {
+.container-nav {
     position: absolute;
     right: 0;
     top: 1.4rem;
     margin: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+.btn-users-nav {
     border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
 }
-#register-btn:hover {
+.btn-users-nav:hover {
     background-color: chocolate;
     transition: all .3s;
     border: none;
@@ -129,15 +133,6 @@ body {
     cursor: pointer;
     display: flex;
     justify-content: center;
-    animation: slide 1s;
-}
-@keyframes slide {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0px);
-    }
 }
 .message-success {
     color: var(--color-success-dark);
@@ -175,10 +170,76 @@ body {
     gap: 1rem;
     margin: 1.5rem;
 }
+#register-form-author {
+    padding: 2rem;
+    gap: 1rem;
+}
+.form-content {
+    max-width: 64rem;
+    align-self: center;
+    padding: 2px;
+    border-radius: 10px;
+    gap: 1rem;
+}
+.form-content label, .form-content .help-text,.errorlist {
+    display: block;
+    margin: .5rem 0;
+    font-size: 1.4rem;
+}
+.errorlist {
+    list-style: none;
+    color: red;
+}
+.form-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}
+.form-group {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1rem;
+}
+.form-group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: var(--bg-color-white);
+    padding: .8rem;
+    border: 2px solid #000000bd;
+    border-radius: 5px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: .2rem;
+}
+
+#form-button {
+    width: 20%;
+    border: none;
+    padding: .8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rgb(36, 36, 36);
+    transition: all .6s;
+}
+#form-button:hover {
+    opacity: .8;
+    transform: scale(1.03);
+    transition: all .6s;
+}
+
+@media (max-width: 600px) {
+    .main-content-list,
+    .form-content-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+}
 
 
 @media (max-width:800) {
     .main-header-container {
-        font-size: .3rem;
+        font-size: .5rem;
     }
 }
