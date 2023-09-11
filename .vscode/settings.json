@@ -5,7 +5,8 @@
     "python.testing.pytestArgs": [
         "app",
         "author",
-        "utils"
+        "utils",
+        "tests"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,

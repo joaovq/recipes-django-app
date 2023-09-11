@@ -54,14 +54,7 @@ class RecipeHomeViewTest(RecipeTestBase):
     def test_recipe_home_view_is_displayed_items_per_page_is_correct(self):
         """Test recipes is_published False don't show"""
         Recipes.objects.filter(pk=1).delete()
-        for i in range(1,11):
-            needed_title = 'My new recipe in page'    
-            self.make_recipe(
-                title=needed_title,
-                author={'username':f'joaovq{i}'},
-                slug=f'{needed_title}{i}',
-                is_published=True
-            )
+        self.make_recipe_in_batch(qtd=11)
         response = self.client.get(
             reverse('app:home')
         )
@@ -86,14 +79,7 @@ class RecipeHomeViewTest(RecipeTestBase):
     
     # @patch(target='utils.pagination.PER_PAGES', new=3) other format
     def test_recipe_home_is_paginated(self):    
-        for i in range(8):
-            needed_title = 'My new recipe in page'    
-            self.make_recipe(
-                title=needed_title,
-                author={'username':f'joaovq{i}'},
-                slug=f'{needed_title}{i}',
-                is_published=True
-            )
+        self.make_recipe_in_batch(qtd=8)
         with patch('app.views.PER_PAGE',new=3):
             response = self.client.get(
                 reverse('app:home')

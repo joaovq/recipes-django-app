@@ -5,7 +5,7 @@
   <div class="container-nav">
     {% if not user.is_authenticated %} 
         {% if not is_login_page %}
-        <a href="{% url 'author:login_author' %}">
+        <a href="{% url 'author:login' %}">
             <div class="btn-users-nav">
                 <h6>Login</h6>
             </div>

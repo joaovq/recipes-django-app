@@ -3,4 +3,4 @@
 # for get coverage in html: coverage html
 [run]
 branch = True
-omit=venv/*,**/*test*.py,manage.py,__localcode/*, project/*
+omit=venv/*,**/*test*.py,manage.py,__localcode/*, project/*, utils/browser.py

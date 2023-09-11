@@ -1,11 +1,9 @@
 import datetime
 from django.test import TestCase
-
 from app.models import Category, Recipes
 from django.contrib.auth.models import User
 
-
-class RecipeTestBase(TestCase):
+class RecipeMixin:
     def make_recipe(
         self,
         title='My name Recipe',
@@ -64,3 +62,19 @@ class RecipeTestBase(TestCase):
             password=password,
             email=email
         )
+        
+    def make_recipe_in_batch(self, qtd = 10):
+        recipes = []
+        for i in range(qtd):
+            needed_title = 'My new recipe in page'    
+            recipe = self.make_recipe(
+                title=needed_title,
+                author={'username':f'joaovq{i}'},
+                slug=f'{needed_title}{i}',
+                is_published=True
+            )
+            recipes.append(recipe)
+        return recipes
+
+class RecipeTestBase(RecipeMixin,TestCase):
+    ...

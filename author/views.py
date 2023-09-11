@@ -34,7 +34,7 @@ def register_create(request):
         user.save()
         messages.success(request, 'Your user is created, please log in')
         del (request.session['register_form_data'])
-        return redirect(to='author:login_author')
+        return redirect(to='author:login')
     return redirect(to='author:register_author')
 
 
@@ -55,14 +55,14 @@ def login_create(request):
         raise Http404()
 
     form = LoginAuthorForm(request.POST)
-    login_url = 'author:login_author'
+    login_url = 'author:dashboard'
     
     if form.is_valid():
         authenticated_user = authenticate(request=request, username=form.cleaned_data.get(
             'username', ''), password=form.cleaned_data.get('password'))
         if authenticated_user is not None:
             messages.success(request, 'You are logged in')
-            login(request, authenticated_user)
+            login(request, authenticated_user)        
         else:
             messages.error(request,'Invalid credentials')
     else:    
@@ -74,14 +74,20 @@ def login_create(request):
 def logout_view(request):
     """
     Por segurança é melhor colocar logout por formulário para evitar ataque csrf
-    Desta forma, coonseguimos identificar de onde as requisições chegam    
+    Desta forma, conseguimos identificar de onde as requisições chegam    
     """    
     if not request.POST:
-        redirect(to='author:login_author')   
+        messages.error(request,'Invalid logout request')
+        redirect(to='author:login')   
     
     if request.POST.get('username') != request.user.username:
-        return redirect(reverse('authors:login'))
+        messages.error(request,'Invalid user request')
+        return redirect(reverse('author:login'))
     
     logout(request)
     messages.info(request, 'You session was terminated')
-    return redirect(to='author:login_author')
+    return redirect(to='author:login')
+
+@login_required(redirect_field_name='next',login_url='author:login')
+def dashboard_view(request):
+    return render(request, 'author/pages/dashboard.html')
