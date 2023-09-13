@@ -15,7 +15,7 @@ class RecipeHomeViewTest(RecipeTestBase):
         view = resolve(
             reverse('app:home')
         ) 
-        self.assertIs(view.func, views.home_view)
+        self.assertIs(view.func.view_class, views.RecipeHomeView)
     def test_recipe_home_view_get_status_200_OK(self):
         home_path = reverse('app:home')
         response = self.client.get(path = home_path)  

@@ -4,8 +4,9 @@ from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from app.models import Recipes
 from author.forms import RegisterForm, LoginAuthorForm
+from author.forms.recipe_form import AuthorRecipeForm
 
 
 def register_view(request):
@@ -90,4 +91,24 @@ def logout_view(request):
 
 @login_required(redirect_field_name='next',login_url='author:login')
 def dashboard_view(request):
-    return render(request, 'author/pages/dashboard.html')
+    recipes = Recipes.objects.filter(author=request.user, is_published = False)
+    return render(request, 'author/pages/dashboard.html', context={
+        "recipes": recipes
+    })    
+    
+@login_required(redirect_field_name='next',login_url='author:login')
+def dashboard_recipe_create(request):
+    form = AuthorRecipeForm(request.POST,files=request.FILES or None)
+    
+    if form.is_valid():
+        recipe = form.save(commit=False)
+        recipe.author = request.user
+        recipe.preparation_steps_is_html = False
+        recipe.is_published = False
+        recipe.save()
+        
+        messages.success(request,' Your recipe was creted with success')
+        return redirect(reverse('author:dashboard_recipe_edit',args=[recipe.id]))
+    return render(request, 'author/pages/dashboard_create_recipe.html', context={
+        'form': form
+    })

@@ -1,0 +1,68 @@
+.card-recipe-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: .2rem;
+    background: white;
+    max-width: 32rem;
+    transition: all .3s ease;
+    box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.199);
+}
+.card-recipe-container:hover {
+    transform: scale(1.03);
+    transition: all .3s ease;
+}
+.card-recipe-container img {
+    border-radius: .2rem;
+}
+.content-card {
+    padding: 1rem;
+}
+.card-recipe-title {
+    color: rgb(53, 53, 53);
+}
+.container-see-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: .8rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    font-size: 14px;
+}
+.container-see-more:hover {
+    background: rgb(53, 53, 53);
+}
+.recipe-author-items {
+    font-size: .8rem;
+    font-weight: 400;
+    color: #474747;
+}
+.card-details:hover {
+    color: black;
+}
+.card-details {
+    font-size: .8rem;
+    font-weight: 400;
+    color: rgb(22, 149, 223);
+}
+.container-recipe-meta {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding: 1.1rem .5rem;
+    background: var(--bg-color);
+}
+.container-recipe-meta-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.card-description-recipe-meta {
+    font-size: 12px;
+    padding: .5rem 0rem;
+}
+.content-card-steps-preparation {
+    font-size: 1.4rem;
+}

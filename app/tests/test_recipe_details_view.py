@@ -9,7 +9,7 @@ class RecipeDetailsViewTest(RecipeTestBase):
         view = resolve(
             reverse('app:recipe_details',kwargs= {'recipe_id':1})
         ) 
-        self.assertIs(view.func, views.recipe_details_view) 
+        self.assertIs(view.func.view_class, views.RecipeDetailsView) 
         
                                     
                 
@@ -26,9 +26,8 @@ class RecipeDetailsViewTest(RecipeTestBase):
         response = self.client.get(
             reverse('app:recipe_details',kwargs= {'recipe_id':recipe.id})
         )
-        self.assertEqual(response.status_code, 404) 
-          
-   
+        self.assertEqual(response.status_code, 404)  
+
     def test_recipe_details_view_returns_recipe_with_title_is_correct(self):
         self.make_recipe()
         needed_title = 'My recipe details test'

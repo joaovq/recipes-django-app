@@ -11,7 +11,7 @@ class RecipeSearchViewTest(RecipeTestBase):
     def test_recipe_search_uses_correct_view_function(self):
         url = reverse('app:search_recipes')
         resolved = resolve(url)
-        self.assertIs(resolved.func, views.search_recipes_view)
+        self.assertIs(resolved.func.view_class, views.RecipeSearchView)
     def test_recipe_search_loads_correct_template(self):
        response =  self.client.get(reverse('app:search_recipes')+'?search=fsd') 
        self.assertTemplateUsed(response=response,template_name= 'recipes/pages/recipes_search.html')    

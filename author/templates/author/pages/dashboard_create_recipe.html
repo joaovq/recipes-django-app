@@ -1,0 +1,19 @@
+{% extends 'global/base.html' %} 
+{% block base_title %}
+    {{ title|default:"Dashboard Create Recipe| Author" }}
+{% endblock base_title %}
+{% block base_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'author/dashboard.css' %}">
+{% endblock base_css %}
+{% block content %}
+    {% include 'global/partials/header_recipes.html' with is_register_page=True %}
+    <div class="container">
+        <h1>Dashboard Create Recipe</h1> 
+    </div>  
+    <div class="main-container-recipes-author">  
+        {% include 'author/partials/login_message.html' %}  
+        {% include 'global/partials/forms.html' %}
+    </div>
+    {% include 'global/partials/footer.html' %}
+{% endblock content %}

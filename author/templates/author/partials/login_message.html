@@ -1,0 +1,6 @@
+<div class="login-message">
+    Your are logged in with 
+    {{ request.user.username }}. 
+    <a href="{% url 'author:dashboard' %}">See your recipes</a> or 
+    <a href="{% url 'author:dashboard_create' %}">create a new recipe</a>  
+  </div>

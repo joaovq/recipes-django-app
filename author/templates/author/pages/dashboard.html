@@ -2,13 +2,48 @@
 {% block base_title %}
     {{ title|default:"Dashboard user| Author" }}
 {% endblock base_title %}
+
 {% block base_css %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'global/card/card.css' %}">
+<link rel="stylesheet" href="{% static 'author/dashboard.css' %}">
 {% endblock base_css %}
+
+{% block base_extras_scripts %}
+    <script src="{% static 'global/js/scripts.js' %}"></script>
+{% endblock base_extras_scripts %}
+    
 {% block content %}
-    {% include 'global/partials/header_recipes.html' with is_register_page=True %}
+    {% include 'global/partials/header_recipes.html' with is_register_page=True is_dashboard=True %}
     <div class="container">
         <h1>Dashboard ({{ user }})</h1> 
     </div>  
-    <div class="content-register-page">
+    <div class="main-container-recipes-author">
+        <div class="author-recipes">
+            {% include 'author/partials/login_message.html' %} 
+            {% include 'global/messages.html' %}
+            <div>
+                <h3>Your Recipes</h3> 
+            </div>  
+            <div>
+                <ul>
+                    {% for recipe in recipes %}
+                        <li style="display: flex; gap: .5rem;">
+                            <a href="{% url 'author:dashboard_recipe_edit' recipe.id %}">{{recipe.title}}</a>
+                            - <form action="{% url 'author:dashboard_delete' recipe.id %}" class="form-delete" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{recipe.id}}">
+                                <button type="submit">X</button>
+                            </form>
+                        </li>
+                    {% empty%}
+                    <li>
+                        <p>You don't have recipes</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div> 
+        </div>          
+    </div>
+    {% include 'global/partials/footer.html' %}
 {% endblock content %}

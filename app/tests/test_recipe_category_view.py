@@ -5,16 +5,16 @@ from app.tests.test_recipe_base import RecipeTestBase
 
 
 class RecipeCategoryViewTest(RecipeTestBase):
-    def test_recipe_category_recipe_view_function_is_correct(self):
+    def test_recipe_category_recipe_view_class_is_correct(self):
         Recipes.objects.filter(pk=1).delete()    
         view = resolve(
             reverse('app:category_recipes',kwargs= {'category_id':1})
         ) 
-        self.assertIs(view.func, views.categories_recipes_view)  
+        self.assertIs(view.func.view_class, views.RecipeCategoryRecipeView)  
         
     def test_recipe_category_returns_404_not_found_category(self):
         response = self.client.get(
-            reverse('app:category_recipes',kwargs= {'category_id':2000})
+            reverse('app:category_recipes',kwargs= {'category_id':1000})
         )
         self.assertEqual(response.status_code, 404) 
         

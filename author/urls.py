@@ -10,4 +10,11 @@ urlpatterns = [
     path("login/success", view=views.login_create, name="login_success"),
     path("login/logout", view=views.logout_view, name="logout"),
     path("dashboard", view=views.dashboard_view, name="dashboard"),
+    path("dashboard/create", view=views.DashboardRecipeView.as_view(), name="dashboard_create"),
+    path("dashboard/<int:id>/delete", view=views.DashboardDeleteView.as_view(), name="dashboard_delete"),
+    path(
+        "dashboard/<int:id>/edit",
+        view=views.DashboardRecipeView.as_view(),
+        name="dashboard_recipe_edit"
+    ),
 ]

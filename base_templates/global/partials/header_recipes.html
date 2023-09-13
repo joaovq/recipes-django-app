@@ -20,6 +20,13 @@
         {% endif %} 
 
     {% else %}
+    {% if is_dashboard is None %}
+        <a href="{% url 'author:dashboard' %}">
+            <div class="btn-users-nav">
+                <h6>Meu dashboard</h6>
+            </div>
+        </a>
+    {% endif %}    
     <form action="{% url 'author:logout' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="username" value="{{ user.username }}">

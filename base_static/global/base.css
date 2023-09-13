@@ -9,6 +9,10 @@ body {
     height: 100%;
 }
 
+img {
+    max-width: 100%;
+}
+
 .container {
     padding: 1.5rem; 
 }
@@ -176,9 +180,8 @@ body {
 }
 .form-content {
     max-width: 64rem;
-    align-self: center;
+    margin: 0 auto;
     padding: 2px;
-    border-radius: 10px;
     gap: 1rem;
 }
 .form-content label, .form-content .help-text,.errorlist {
@@ -228,6 +231,10 @@ body {
     opacity: .8;
     transform: scale(1.03);
     transition: all .6s;
+}
+
+.span-2 {
+    grid-column: span 2;
 }
 
 @media (max-width: 600px) {
