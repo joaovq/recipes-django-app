@@ -17,7 +17,7 @@ class RecipeDetailsViewTest(RecipeTestBase):
         )
         self.assertEqual(response.status_code, 404) 
         
-    def test_recipe_details_view_returns_404_not_found_recipe(self):
+    def test_recipe_details_view_is_not_published_returns_404_not_found_recipe(self):
         Recipes.objects.filter(pk=1).delete()
         recipe = self.make_recipe(author={'username':'joaovq'}, is_published=False)
         response = self.client.get(
@@ -35,7 +35,7 @@ class RecipeDetailsViewTest(RecipeTestBase):
         content_recipes_page = response.content.decode('utf-8')
         self.assertIn(needed_title,content_recipes_page)  
         
-    def test_recipe_details_view_returns_recipe_with_title_is_correct(self):
+    def test_recipe_details_view_returns_recipe_with_user_is_correct(self):
         needed_first_name = 'Cardoso'
         self.make_recipe(author={'username':'joaovq', 'first_name': needed_first_name})
         response = self.client.get(
