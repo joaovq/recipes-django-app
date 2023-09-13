@@ -28,7 +28,7 @@ class RecipeDetailsViewTest(RecipeTestBase):
     def test_recipe_details_view_returns_recipe_with_title_is_correct(self):
         self.make_recipe()
         needed_title = 'My recipe details test'
-        self.make_recipe(title=needed_title,author={'username':'joaovq'})
+        self.make_recipe(title=needed_title,author={'username':'joaovq'}, slug='my-recipe-details-test')
         response = self.client.get(
             reverse('app:recipe_details',kwargs= {'recipe_id':2})
         )
