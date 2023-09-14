@@ -1,0 +1,75 @@
+###############################################################################
+# Replace
+# recipescursodjango to the name of the gunicorn file you want
+# joaovqdev to your user name
+# app_repo to the folder name of your project in the server
+# project to the folder name where you find a file called wsgi.py
+#
+###############################################################################
+# Criando o arquivo recipescursodjango.socket
+sudo nano /etc/systemd/system/recipescursodjango.socket
+
+###############################################################################
+# Conteúdo do arquivo socket
+[Unit]
+Description=gunicorn blog socket
+
+[Socket]
+ListenStream=/run/recipescursodjango.socket
+
+[Install]
+WantedBy=sockets.target
+
+###############################################################################
+# Criando o arquivo recipescursodjango.service
+sudo nano /etc/systemd/system/recipescursodjango.service
+
+###############################################################################
+# Conteúdo do arquivo service
+[Unit]
+Description=Gunicorn daemon (You can change if you want)
+Requires=recipescursodjango.socket
+After=network.target
+
+[Service]
+User=joaovqdev
+Group=www-data
+Restart=on-failure
+EnvironmentFile=/home/joaovqdev/app_repo/.env
+WorkingDirectory=/home/joaovqdev/app_repo
+# --error-logfile --enable-stdio-inheritance --log-level and --capture-output
+# are all for debugging purposes.
+ExecStart=/home/joaovqdev/app_repo/.venv/bin/gunicorn \
+          --error-logfile /home/joaovqdev/app_repo/gunicorn-error-log \
+          --enable-stdio-inheritance \
+          --log-level "debug" \
+          --capture-output \
+          --access-logfile - \
+          --workers 6 \
+          --bind unix:/run/recipescursodjango.socket \
+          project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+###############################################################################
+# Ativando
+sudo systemctl start recipescursodjango.socket
+sudo systemctl enable recipescursodjango.socket
+
+# Checando
+sudo systemctl status recipescursodjango.socket
+curl --unix-socket /run/recipescursodjango.socket localhost
+sudo systemctl status recipescursodjango
+
+# Restarting
+sudo systemctl restart recipescursodjango.service
+sudo systemctl restart recipescursodjango.socket
+sudo systemctl restart recipescursodjango
+
+# After changing something
+sudo systemctl daemon-reload
+
+# Debugging
+sudo journalctl -u recipescursodjango.service
+sudo journalctl -u recipescursodjango.socket

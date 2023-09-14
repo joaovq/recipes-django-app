@@ -148,3 +148,24 @@ pip install gunicorn
 ## Configurando o nginx
 
 Use o arquivo e as explicações disponibilizadas na aula.
+
+nginx é um servidor web
+
+## Configurando o .env
+
+Para criar o arquivo .env:
+```
+mkdir -p .env
+
+```
+
+Tendo o arquivo .env-example, para copiar ele, use os comandos abaixo:
+
+```
+cp .env-example .env
+```
+Para entrar no arquivo .env e modificar:  
+
+```
+nano .env
+```
