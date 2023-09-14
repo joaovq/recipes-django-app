@@ -1,0 +1,8 @@
+FROM python:3
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+WORKDIR /test_db_work
+COPY requirements.txt /test_db_work/
+RUN pip install -r requirements.txt
+COPY . /test_db_work/
+EXPOSE 8080

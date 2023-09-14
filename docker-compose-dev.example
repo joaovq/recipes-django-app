@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  db:
+    env_file:
+    - ./.env
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 35432:5432
+    expose:
+      - 5432
+  web:
+    env_file:
+    - ./.env
+    build: .
+    entrypoint: ./docker-entrypoint.sh
+    volumes:
+      - .:/test_work_db
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_NAME: ${POSTGRES_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_HOST: db
+      DATABASE_PORT: ${DATABASE_PORT}
+      DEBUG: ${DEBUG}
+    depends_on:
+      - db
+      
