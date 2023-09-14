@@ -92,3 +92,59 @@ git config --global user.name 'Seu nome'
 git config --global user.email 'seu_email@gmail.com'
 git config --global init.defaultBranch main
 ```
+
+## Criando um repositório no servidor
+
+Um repositório bare é um repositório transitório (como se fosse um github), pode fazer pull de varios lugares.
+
+```
+mkdir -p ~/app_bare
+cd ~/app_bare
+git init --bare
+cd ~
+```
+
+Criando o repositório da aplicação
+
+```
+mkdir -p ~/app_repo
+cd ~/app_repo
+git init
+git remote add origin ~/app_bare
+git add . && git commit -m 'Initial'
+cd ~
+```
+
+No seu computador local, adicione o bare como remoto:
+
+```
+git remote add app_bare cursodjangoserver:~/app_bare
+// Se utilizarmos a configuração de host do ssh
+ex: git remote add app_bare recipesapp:~/app_bare
+
+// Para enviar o que tem no repositorio pro repositoriio do servidor
+git push app_bare <branch>
+```
+
+No servidor, em app_repo, faça pull:
+
+```
+cd ~/app_repo
+git pull origin <branch>
+```
+
+## Criando o ambiente virtual
+
+```
+cd  ~/app_repo
+git pull origin <branch>
+python3.9 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+pip install psycopg2
+pip install gunicorn
+```
+
+## Configurando o nginx
+
+Use o arquivo e as explicações disponibilizadas na aula.
