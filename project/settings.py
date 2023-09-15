@@ -28,10 +28,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 DEBUG =True if os.environ.get('DEBUG', True) == '1' else False
 
 ALLOWED_HOSTS: list[str] = [
-    h.strip() for h in os.environ.get('ALLOWED_HOSTS', '*').split(',')
-    if h.strip()
+   h.strip() for h in os.environ.get('ALLOWED_HOSTS', '*').split(',')
+   if h.strip()
 ]
-
 
 # Application definition
 
