@@ -3,9 +3,9 @@
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
 media
-gunicorn-error.log
+gunicorn-error-log
+db.sqlite3
 static/
 # Backup files # 
 *.bak 

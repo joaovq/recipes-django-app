@@ -26,6 +26,12 @@ comando:
 ssh-keygen -t rsa -b 4096 -f CAMINHO+NOME_DA_CHAVE
 ```
 
+A partir de um email:
+
+```
+ssh-keygen -t rsa -C "your@email.address"
+```
+
 Lembre-se que a pasta .ssh deve existir dentro da pasta do seu usuário para que
 seja possível criar a chave SSH. Muito comum ocorrer erros no Windows por falta
 dessa pasta.
@@ -37,6 +43,12 @@ utilize:
 ssh IP_OU_HOST -i CAMINHO+NOME_DA_CHAVE
 ```
 
+Se precisar configurar o caminho, no caso de erro ou de criação de chave personalizada
+https://www.howtogeek.com/762863/how-to-generate-ssh-keys-in-windows-10-and-windows-11/
+
+https://superuser.com/questions/1537763/location-of-openssh-configuration-file-on-windows
+
+O arquivo id_rsa contém sua chave privada e pode ser compartilhado livremente sem problemas. O arquivo id rsa.pub contém apenas a parte pública da chave e só deve ser usado quando necessário.
 ### Ao entrar no servidor
 
 A primeira coisa será atualizar tudo:
