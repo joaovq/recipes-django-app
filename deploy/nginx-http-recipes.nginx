@@ -3,8 +3,8 @@
 # REPLACES
 # 104.154.34.73 = Replace with your domain
 # /home/joaovqdev/app_repo = Replace with the path to the folder for the project
-# /home/joaovqdev/app_repo/static = Replace with the path to the folder for static files
-# /home/joaovqdev/app_repo/media = Replace with the path to the folder for media files
+# /home/joaovqdev/data/web/static = Replace with the path to the folder for static files
+# /home/joaovqdev/data/web/media = Replace with the path to the folder for media files
 # recipescursodjango.socket = Replace with your unix socket name
 # 
 # Set timezone
@@ -20,16 +20,16 @@ server {
   # Add index.php to the list if you are using PHP
   index index.html index.htm index.nginx-debian.html index.php;
   
-  # ATTENTION: /home/joaovqdev/app_repo/static
+  # ATTENTION: /home/joaovqdev/data/web/static
   location /static {
     autoindex on;
-    alias /home/joaovqdev/app_repo/static;
+    alias /home/joaovqdev/data/web/static;
   }
 
-  # ATTENTION: /home/joaovqdev/app_repo/media 
+  # ATTENTION: /home/joaovqdev/data/web/media 
   location /media {
     autoindex on;
-    alias /home/joaovqdev/app_repo/media;
+    alias /home/joaovqdev/data/web/media;
   }
 
   # ATTENTION: recipescursodjango.socket
