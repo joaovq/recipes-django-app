@@ -1,9 +1,13 @@
+from typing import Any
+from django import http
+from django.http import JsonResponse
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from app.models import Category, Recipes
 from django.db.models import Q
 from utils.pagination import make_pagination, PER_PAGES
 from django.views.generic import ListView, DetailView
+from django.forms.models import model_to_dict
 
 PER_PAGE = PER_PAGES
 
@@ -33,6 +37,14 @@ class RecipeListViewBase(ListView):
 
 class RecipeHomeView(RecipeListViewBase):
     template_name = 'recipes/pages/home.html'
+    
+class RecipeHomeViewApi(RecipeListViewBase):
+    template_name = 'recipes/pages/home.html'
+    
+    def render_to_response(self, context: dict[str, Any], **response_kwargs: Any) -> JsonResponse:
+        recipes = self.get_context_data()['recipes']
+        recipes_list = recipes.object_list.values()
+        return JsonResponse(list(recipes_list),safe=False)
 
 
 class RecipeCategoryRecipeView(RecipeListViewBase):
@@ -121,3 +133,26 @@ class RecipeDetailsView(DetailView):
             }
         )
         return context
+    
+class RecipeDetailsViewApi(RecipeDetailsView):
+    def render_to_response(self, context: dict[str, Any], **response_kwargs: Any):
+        recipe = self.get_context_data()['recipes'][0]
+        recipe_dict = model_to_dict(recipe)
+        
+        recipe_dict['created_at'] = str(recipe.created_at)
+        recipe_dict['updated_at'] = str(recipe.updated_at)
+
+        if recipe_dict.get('cover_image'): 
+            recipe_dict.update({
+                "cover_image": self.request.build_absolute_uri + recipe_dict.get('cover_image').url
+            })
+        else:
+            recipe_dict['cover_image'] = ''
+            
+        del(recipe_dict['is_published'])
+        del(recipe_dict['preparation_steps_is_html'])
+        
+        return JsonResponse(
+            recipe_dict,
+            safe=False
+        )
