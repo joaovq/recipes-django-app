@@ -4,10 +4,12 @@ from django.http import JsonResponse
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from app.models import Category, Recipes
-from django.db.models import Q
+from django.db.models import Q, F, Value
+from django.db.models.functions import Concat
 from utils.pagination import make_pagination, PER_PAGES
 from django.views.generic import ListView, DetailView
 from django.forms.models import model_to_dict
+from django.db.models.aggregates import Count, Max, Min, Avg
 
 PER_PAGE = PER_PAGES
 
@@ -23,6 +25,8 @@ class RecipeListViewBase(ListView):
         qs = qs.filter(
             is_published=True
         )
+        # Faz um join nas fk's (Melhora bastante a performance)
+        qs = qs.select_related('author', 'category')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -30,21 +34,23 @@ class RecipeListViewBase(ListView):
         page_obj, pagination_range = make_pagination(
             request=self.request, queryset=context.get('recipes'), per_page=PER_PAGE)
         context.update(
-            {'recipes': page_obj, 'pagination_range': pagination_range}
+            {'recipes': page_obj, 'pagination_range': pagination_range,
+                "number_recipes": Recipes.objects.aggregate(Count('id'))['number']}
         )
         return context
 
 
 class RecipeHomeView(RecipeListViewBase):
     template_name = 'recipes/pages/home.html'
-    
+
+
 class RecipeHomeViewApi(RecipeListViewBase):
     template_name = 'recipes/pages/home.html'
-    
+
     def render_to_response(self, context: dict[str, Any], **response_kwargs: Any) -> JsonResponse:
         recipes = self.get_context_data()['recipes']
         recipes_list = recipes.object_list.values()
-        return JsonResponse(list(recipes_list),safe=False)
+        return JsonResponse(list(recipes_list), safe=False)
 
 
 class RecipeCategoryRecipeView(RecipeListViewBase):
@@ -53,8 +59,14 @@ class RecipeCategoryRecipeView(RecipeListViewBase):
     def get_queryset(self, *args, **kwargs):
         query_set = super().get_queryset(*args, **kwargs)
         category_id = self.kwargs.get('category_id')
+        # annotate cria novos campos na query set
         query_set = query_set.filter(
             category__id=category_id, is_published=True
+        ).annotate(
+            author_full_name=Concat(
+                F('author__first_name'), Value(" ( "),
+                F('author__username'), Value(' ) '),
+            )
         )
         if not query_set:
             raise Http404()
@@ -88,7 +100,9 @@ class RecipeSearchView(RecipeListViewBase):
             ),
             is_published=True
         ).order_by('-id')
-
+        # .values() Para pegar so os campos necessários retornando um dicionario
+        # .only() Para pegar so os campos necessários retornando objetos da entidade
+        # .defer() Para pegar todos os campos, menos o selecionado
         return query_set
 
     def get_context_data(self, **kwargs):
@@ -107,7 +121,8 @@ class RecipeSearchView(RecipeListViewBase):
             }
         )
         return context
-    
+
+
 class RecipeDetailsView(DetailView):
     model = Recipes
     context_object_name = 'recipes'
@@ -117,41 +132,42 @@ class RecipeDetailsView(DetailView):
     def get_queryset(self, *args, **kwargs):
         query_set = super().get_queryset(*args, **kwargs)
         query_set = query_set.filter(
-            is_published = True
+            is_published=True
         )
         if not query_set:
             raise Http404()
         return query_set
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Não precisa passar novamente o recipes, faço isso porque é uma lista  
+        # Não precisa passar novamente o recipes, faço isso porque é uma lista
         context.update(
             {
-                'recipes':[context.get('recipes')],
+                'recipes': [context.get('recipes')],
                 'is_detail_page': True
             }
         )
         return context
-    
+
+
 class RecipeDetailsViewApi(RecipeDetailsView):
     def render_to_response(self, context: dict[str, Any], **response_kwargs: Any):
         recipe = self.get_context_data()['recipes'][0]
         recipe_dict = model_to_dict(recipe)
-        
+
         recipe_dict['created_at'] = str(recipe.created_at)
         recipe_dict['updated_at'] = str(recipe.updated_at)
 
-        if recipe_dict.get('cover_image'): 
+        if recipe_dict.get('cover_image'):
             recipe_dict.update({
                 "cover_image": self.request.build_absolute_uri + recipe_dict.get('cover_image').url
             })
         else:
             recipe_dict['cover_image'] = ''
-            
-        del(recipe_dict['is_published'])
-        del(recipe_dict['preparation_steps_is_html'])
-        
+
+        del (recipe_dict['is_published'])
+        del (recipe_dict['preparation_steps_is_html'])
+
         return JsonResponse(
             recipe_dict,
             safe=False
