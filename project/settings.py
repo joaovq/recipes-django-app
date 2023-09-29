@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+
+if os.environ.get('DEBUG', None) is None:
+    from dotenv import load_dotenv
+    load_dotenv()
 from pathlib import Path
 from django.contrib.messages import constants
 
@@ -43,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'app',
-    'author'
+    'author',
+    'tag'
 ]
 
 MIDDLEWARE = [

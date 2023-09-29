@@ -6,6 +6,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, render
 from app.models import Category, Recipes
 from django.db.models import Q, F, Value
 from django.db.models.functions import Concat
+from tag.models import Tag
 from utils.pagination import make_pagination, PER_PAGES
 from django.views.generic import ListView, DetailView
 from django.forms.models import model_to_dict
@@ -33,9 +34,10 @@ class RecipeListViewBase(ListView):
         context = super().get_context_data(**kwargs)
         page_obj, pagination_range = make_pagination(
             request=self.request, queryset=context.get('recipes'), per_page=PER_PAGE)
+        count_recipes = Recipes.objects.aggregate(Count('id'))
         context.update(
             {'recipes': page_obj, 'pagination_range': pagination_range,
-                "number_recipes": Recipes.objects.aggregate(Count('id'))['number']}
+                "number_recipes": count_recipes['id__count']}
         )
         return context
 
@@ -172,3 +174,41 @@ class RecipeDetailsViewApi(RecipeDetailsView):
             recipe_dict,
             safe=False
         )
+
+
+# Tag view
+
+class RecipeTagView(RecipeListViewBase):
+    template_name = 'recipes/pages/tag.html'
+
+    def get_queryset(self, *args, **kwargs):
+        query_set = super().get_queryset(*args, **kwargs)
+        search_term = self.request.GET.get('search', '').strip()
+        if not search_term:
+            raise Http404
+        query_set = query_set.filter(
+            tags__slug = self.kwargs.get('slug',''),
+            is_published=True
+        ).order_by('-id')
+        query_set.prefetch_related('tags')
+        # .values() Para pegar so os campos necessários retornando um dicionario
+        # .only() Para pegar so os campos necessários retornando objetos da entidade
+        # .defer() Para pegar todos os campos, menos o selecionado
+        return query_set
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_obj, pagination_range = make_pagination(
+            request=self.request, queryset=context.get('recipes'), per_page=PER_PAGE)
+        page_title = Tag.objects.filter(slug = self.kwargs.get('slug',''))
+        if not page_title:
+            page_title = 'No Recipes found.'
+        page_title = f'{page_title} - Tag |'
+        context.update(
+            {
+                'is_detail_page': False,
+                'title': f"Search Results f{page_title}\"",
+                'pagination_range': pagination_range
+            }
+        )
+        return context
