@@ -27,7 +27,8 @@ class RecipeListViewBase(ListView):
             is_published=True
         )
         # Faz um join nas fk's (Melhora bastante a performance)
-        qs = qs.select_related('author', 'category')
+        qs = qs.select_related('author', 'category','author__profile')
+        qs = qs.prefetch_related('tags')
         return qs
 
     def get_context_data(self, **kwargs):
