@@ -11,11 +11,11 @@ class CategoryAdmin(admin.ModelAdmin):
 # Se fosse uma relação sem content types ou uma relação normal
 # class TagInline(admin.TabularInline):
 #     model = Tag
-class TagInline(GenericStackedInline):
-    model = Tag
-    fields = 'name',
-    # Quantidades de campos que aparecem no form 
-    extra = 1
+# class TagInline(GenericStackedInline):
+#     model = Tag
+#     fields = 'name',
+#     # Quantidades de campos que aparecem no form 
+#     extra = 1
 @admin.register(Recipes)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = 'id','title', 'created_at', 'is_published', 'category'
@@ -26,8 +26,9 @@ class RecipeAdmin(admin.ModelAdmin):
     list_editable = ['is_published']
     ordering = '-id',
     prepopulated_fields = {'slug': ('title',) }
-    inlines = [
-        TagInline
-    ]
+    # inlines = [
+    #     TagInline
+    # ]
+    autocomplete_fields = ('tags',)
     
 admin.site.register(Category,CategoryAdmin)

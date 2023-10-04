@@ -1,0 +1,45 @@
+{% extends 'global/base.html' %} 
+{% block base_title %}
+    {{ title|default:"Profile user| Author" }}
+{% endblock base_title %}
+
+{% block base_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'global/card/card.css' %}">
+<link rel="stylesheet" href="{% static 'author/dashboard.css' %}">
+{% endblock base_css %}
+
+{% block base_extras_scripts %}
+    <script src="{% static 'global/js/scripts.js' %}"></script>
+{% endblock base_extras_scripts %}
+    
+{% block content %}
+    {% include 'global/partials/header_recipes.html' with is_register_page=True is_dashboard=True %}
+    <div class="container">
+        <h1>Profile ({{ user }})</h1> 
+    </div>  
+    <div class="main-container-recipes-author">
+        <div class="author-recipes">
+            {% include 'author/partials/login_message.html' %} 
+            {% include 'global/messages.html' %}
+            <div>
+                <h3>Your Data</h3> 
+            </div>  
+            <div>
+                <p>
+                    <b>Username:</b> {{profile.author.username}}
+                </p>
+                <p>
+                 <b>First name:</b>   {{profile.author.first_name}}
+                </p>
+                <p>
+                 <b>Last name:</b>   {{profile.author.last_name}}
+                </p>
+                <p>
+                    <b>Bio:</b>   {{profile.bio}}
+                   </p>
+            </div>
+        </div>          
+    </div>
+    {% include 'global/partials/footer.html' %}
+{% endblock content %}
