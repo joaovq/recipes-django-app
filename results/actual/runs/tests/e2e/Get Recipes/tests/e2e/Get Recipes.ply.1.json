@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Create Recipe",
+    "test": "Create Recipe",
+    "type": "request",
+    "start": "2023-10-18T16:34:14.113Z",
+    "end": "2023-10-18T16:34:14.202Z",
+    "result": {
+      "status": "Errored",
+      "message": "Request 'Create Recipe' ERRORED in 89 ms: Expected result file not found: c:/Users/Work/Desktop/projects/curso/recipes-django-app/results/expected/tests/e2e/Get Recipes.yaml"
+    }
+  }
+]

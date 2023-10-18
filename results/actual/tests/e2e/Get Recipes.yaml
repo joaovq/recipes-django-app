@@ -1,0 +1,52 @@
+Create Recipe:  # 18/10/2023, 13:34:14:114
+  request:
+    url: http://127.0.0.1:8000/recipes/api/v2/
+    method: POST
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+              "title": "Torta de morango",
+              "description": "My Description",
+              "author": 6,
+              "category": 1,
+              "tags": [
+                  5,
+                  6
+              ],
+              "preparation": "5 Minutes",
+              "preparation_time": 5,
+              "preparation_time_unit": "Minutes",
+              "servings_unit": "dd",
+              "preparation_steps": "dasdfdds"
+        }
+  response:  # 65 ms
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      allow: GET, POST, OPTIONS
+      content-language: pt-br
+      content-length: '132'
+      content-type: application/json
+      cross-origin-opener-policy: same-origin
+      date: Wed, 18 Oct 2023 16:34:14 GMT
+      djdt-store-id: 68c013f270a44c549b9ccabd64a7b9e7
+      referrer-policy: same-origin
+      server: WSGIServer/0.2 CPython/3.11.5
+      server-timing: TimerPanel_utime;dur=0;desc="User CPU time", TimerPanel_stime;dur=0;desc="System CPU time", TimerPanel_total;dur=0;desc="Total CPU time", TimerPanel_total_time;dur=37.37169998930767;desc="Elapsed time", SQLPanel_sql_time;dur=1.0225999867543578;desc="SQL 4 queries", CachePanel_total_time;dur=0;desc="Cache 0 Calls"
+      vary: Accept, Accept-Language, Cookie
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+    body: |-
+      {
+        "public": [
+          "Este campo é obrigatório."
+        ],
+        "tag_links": [
+          "Este campo é obrigatório."
+        ],
+        "tag_objects": [
+          "Este campo é obrigatório."
+        ]
+      }

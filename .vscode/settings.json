@@ -13,4 +13,8 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
     },
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "plyconfig.json": "jsonc"
+    },
 }

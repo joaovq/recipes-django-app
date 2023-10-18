@@ -1,0 +1,37 @@
+Get Recipes:  # 18/10/2023, 13:28:38:407
+  request:
+    url: http://127.0.0.1:8000/recipes/api/v2/
+    method: POST
+    headers: {}
+    body: |-
+      {
+              "title": "Torta de morango",
+              "description": "My Description",
+              "preparation": "5 Minutes",
+              "preparation_time": 5,
+              "preparation_time_unit": "Minutes",
+              "servings_unit": "dd",
+              "preparation_steps": "dasdfdds"
+      }
+  response:  # 80 ms
+    status:
+      code: 415
+      message: Unsupported Media Type
+    headers:
+      allow: GET, POST, OPTIONS
+      content-language: pt-br
+      content-length: '86'
+      content-type: application/json
+      cross-origin-opener-policy: same-origin
+      date: Wed, 18 Oct 2023 16:28:38 GMT
+      djdt-store-id: 98ab87efe62a4df6a61834cdbbb7a9db
+      referrer-policy: same-origin
+      server: WSGIServer/0.2 CPython/3.11.5
+      server-timing: TimerPanel_utime;dur=0;desc="User CPU time", TimerPanel_stime;dur=0;desc="System CPU time", TimerPanel_total;dur=0;desc="Total CPU time", TimerPanel_total_time;dur=33.75579998828471;desc="Elapsed time", SQLPanel_sql_time;dur=0;desc="SQL 0 queries", CachePanel_total_time;dur=0;desc="Cache 0 Calls"
+      vary: Accept, Accept-Language, Cookie
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+    body: |-
+      {
+        "detail": "Tipo de mídia  \"text/plain;charset=UTF-8\" no pedido não é suportado."
+      }

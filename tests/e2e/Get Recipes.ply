@@ -1,0 +1,6 @@
+Create Recipe:
+  url: http://127.0.0.1:8000/recipes/api/v2/
+  method: POST
+  headers:
+    Content-Type: application/json
+  body: "{\r\n        \"title\": \"Torta de morango\",\r\n        \"description\": \"My Description\",\r\n        \"author\": 6,\r\n        \"category\": 1,\r\n        \"tags\": [\r\n            5,\r\n            6\r\n        ],\r\n        \"preparation\": \"5 Minutes\",\r\n        \"preparation_time\": 5,\r\n        \"preparation_time_unit\": \"Minutes\",\r\n        \"servings_unit\": \"dd\",\r\n        \"preparation_steps\": \"dasdfdds\"\r\n  }"

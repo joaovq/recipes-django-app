@@ -1,0 +1,4 @@
+Get All Recipes:
+  url: http://127.0.0.1:8000/recipes/api/v2/
+  method: GET
+  headers: {}
