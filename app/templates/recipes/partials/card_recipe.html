@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="card-recipe-container">      
       {% if recipe.cover_image %}
         <img src="{{recipe.cover_image.url}}" alt=""> 
@@ -38,7 +39,7 @@
     {% if is_detail_page is not True and recipe %}
       <a href="{{ recipe.get_absolute_url }}">
         <footer class="container-see-more">
-          <i class="fas fa-eye fa-sm fa-fw"></i>&nbsp; Ver mais...
+          <i class="fas fa-eye fa-sm fa-fw"></i>&nbsp; {% translate "See more" %}
         </footer>
       </a>
     {% else %}

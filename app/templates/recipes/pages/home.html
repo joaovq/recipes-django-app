@@ -3,6 +3,7 @@
   {{title|default:"Home | Recipes"}}   
 {% endblock base_title %}
 {% block home_content %}
+  {% load i18n %}
   {% include 'global/partials/search_input_recipes.html' %}
   {% if category is not None %}
     <div class="container">
@@ -16,7 +17,7 @@
       {% for recipe in recipes  %}
           {% include 'recipes/partials/card_recipe.html' %}
           {% empty %}
-          <h1>No Recipe Found here! 😞</h1>
+          <h1>{% translate "No Recipe Found here! 😞" %}</h1>
       {% endfor %}        
     </main>   
     {% include 'recipes/partials/pagination.html' %}

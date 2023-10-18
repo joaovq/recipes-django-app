@@ -10,7 +10,9 @@ from tag.models import Tag
 from utils.pagination import make_pagination, PER_PAGES
 from django.views.generic import ListView, DetailView
 from django.forms.models import model_to_dict
-from django.db.models.aggregates import Count, Max, Min, Avg
+from django.db.models.aggregates import Count
+from django.utils import translation
+from django.utils.translation import gettext_lazy as _
 
 PER_PAGE = PER_PAGES
 
@@ -36,9 +38,13 @@ class RecipeListViewBase(ListView):
         page_obj, pagination_range = make_pagination(
             request=self.request, queryset=context.get('recipes'), per_page=PER_PAGE)
         count_recipes = Recipes.objects.aggregate(Count('id'))
+        html_language = translation.get_language()
         context.update(
-            {'recipes': page_obj, 'pagination_range': pagination_range,
-                "number_recipes": count_recipes['id__count']}
+            {
+                'recipes': page_obj, 'pagination_range': pagination_range,
+                "number_recipes": count_recipes['id__count'],
+                'html_language': html_language
+            }
         )
         return context
 

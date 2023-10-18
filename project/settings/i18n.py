@@ -6,14 +6,14 @@ import os
 from .environment import BASE_DIR
 
 
-LANGUAGE_CODE = 'pt-BR'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Bahia'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
 USE_TZ = True
 
-LOCALE_PATH = [
+LOCALE_PATHS = [
     os.path.join(BASE_DIR, "locale"),
 ]

@@ -1,7 +1,8 @@
+{% load i18n %}
 {% include 'global/partials/menu.html' %}
 <header class="main-header-container">
   <a href="{% url 'app:home' %}"
-    ><h1><i class="fas fa-address-book"></i> Recipes</h1></a
+    ><h1><i class="fas fa-address-book"></i> {% translate 'Recipes' %}</h1></a
   >
   <div class="container-nav">
     {% if not user.is_authenticated %} 
@@ -15,7 +16,7 @@
         {% if not is_register_page %}
         <a href="{% url 'author:register_author' %}">
             <div class="btn-users-nav">
-                <h6>Register</h6>
+                <h6>{% translate 'Register' %}</h6>
             </div>
         </a>
         {% endif %} 
@@ -24,7 +25,7 @@
     {% if is_dashboard is None %}
         <a href="{% url 'author:dashboard' %}">
             <div class="btn-users-nav">
-                <h6>Meu dashboard</h6>
+                <h6>{% translate 'My dashboard' %}</h6>
             </div>
         </a>
     {% endif %}    
@@ -32,7 +33,7 @@
         {% csrf_token %}
         <input type="hidden" name="username" value="{{ user.username }}">
         <button type="submit" title="Sair submit" class="btn-users-nav">
-            <h6>Sair</h6>
+            <h6>{% translate 'Logout' %}</h6>
         </button>
     </form>
     {% endif %}
