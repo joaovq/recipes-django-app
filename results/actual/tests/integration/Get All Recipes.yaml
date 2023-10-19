@@ -1,0 +1,274 @@
+Get All Recipes:  # 19/10/2023, 11:34:37:355
+  request:
+    url: http://127.0.0.1:8000/recipes/api/v2/
+    method: GET
+    headers: {}
+  response:  # 279 ms
+    status:
+      code: 200
+      message: OK
+    headers:
+      allow: GET, POST, HEAD, OPTIONS
+      content-language: pt-br
+      content-length: '3904'
+      content-type: application/json
+      cross-origin-opener-policy: same-origin
+      date: Thu, 19 Oct 2023 14:34:37 GMT
+      djdt-store-id: 0134530027844d7eb979585142411b9a
+      referrer-policy: same-origin
+      server: WSGIServer/0.2 CPython/3.11.5
+      server-timing: TimerPanel_utime;dur=0;desc="User CPU time", TimerPanel_stime;dur=0;desc="System CPU time", TimerPanel_total;dur=0;desc="Total CPU time", TimerPanel_total_time;dur=252.06999998772517;desc="Elapsed time", SQLPanel_sql_time;dur=6.372899981215596;desc="SQL 31 queries", CachePanel_total_time;dur=0;desc="Cache 0 Calls"
+      vary: Accept, Accept-Language, Cookie
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+    body: |-
+      [
+        {
+          "author": 6,
+          "author_name": "username",
+          "category": 1,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 1,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+            "http://127.0.0.1:8000/recipes/api/v2/tag/5/",
+            "http://127.0.0.1:8000/recipes/api/v2/tag/6/"
+          ],
+          "tag_objects": [
+            {
+              "id": 5,
+              "name": "tortadoce",
+              "slug": "tortadoce-ujdph"
+            },
+            {
+              "id": 6,
+              "name": "Almoço",
+              "slug": "almoco"
+            }
+          ],
+          "tags": [
+            5,
+            6
+          ],
+          "title": "Torta de morango"
+        },
+        {
+          "author": 7,
+          "author_name": "my-user0",
+          "category": 3,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 2,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+            "http://127.0.0.1:8000/recipes/api/v2/tag/2/",
+            "http://127.0.0.1:8000/recipes/api/v2/tag/5/"
+          ],
+          "tag_objects": [
+            {
+              "id": 2,
+              "name": "minhareceita",
+              "slug": "minhareceita-ygvot"
+            },
+            {
+              "id": 5,
+              "name": "tortadoce",
+              "slug": "tortadoce-ujdph"
+            }
+          ],
+          "tags": [
+            2,
+            5
+          ],
+          "title": "Torta salgada de frango"
+        },
+        {
+          "author": 8,
+          "author_name": "my-user1",
+          "category": 4,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 3,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 9,
+          "author_name": "my-user2",
+          "category": 5,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 4,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 10,
+          "author_name": "my-user3",
+          "category": 6,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 5,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 11,
+          "author_name": "my-user4",
+          "category": 7,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 6,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 12,
+          "author_name": "my-user5",
+          "category": 8,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 7,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 13,
+          "author_name": "my-user6",
+          "category": 9,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 8,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 14,
+          "author_name": "my-user7",
+          "category": 10,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 9,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        },
+        {
+          "author": 15,
+          "author_name": "my-user8",
+          "category": 11,
+          "category_name": "Category",
+          "cover_image": null,
+          "description": "My Description",
+          "id": 10,
+          "preparation": "5 Minutes",
+          "preparation_steps": "dasdfdds",
+          "preparation_time": 5,
+          "preparation_time_unit": "Minutes",
+          "public": true,
+          "servings_unit": "dd",
+          "tag_links": [
+          ],
+          "tag_objects": [
+          ],
+          "tags": [
+          ],
+          "title": "My name Recipe"
+        }
+      ]
