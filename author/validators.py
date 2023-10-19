@@ -13,7 +13,6 @@ class AuthorRecipeValidator:
 
     def clean(self, *args, **kwargs):
         self.clean_title()
-        self.clean_servings()
         self.clean_preparation_time()
 
         cd = self.data
@@ -38,15 +37,6 @@ class AuthorRecipeValidator:
 
     def clean_preparation_time(self):
         field_name = 'preparation_time'
-        field_value = self.data.get(field_name)
-
-        if not is_positive_number(field_value):
-            self.errors[field_name].append('Must be a positive number')
-
-        return field_value
-
-    def clean_servings(self):
-        field_name = 'servings'
         field_value = self.data.get(field_name)
 
         if not is_positive_number(field_value):

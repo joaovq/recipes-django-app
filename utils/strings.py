@@ -1,6 +1,6 @@
-def is_positive_number(string):
+def is_positive_number(value):
     try:
-        number = float(string)    
-    except ValueError:
+        number_string = float(value)
+    except (ValueError, TypeError):
         return False
-    return number > 0
+    return number_string > 0

@@ -10,7 +10,11 @@ def delete_cover(recipe: Recipes):
         ...
 @receiver(pre_save, sender=Recipes)
 def recipe_post_signal(sender, instance, *args, **kwargs):
-    old_instance = Recipes.objects.get(pk=instance.pk)
+    old_instance = Recipes.objects.filter(pk=instance.pk).first()
+    
+    if not old_instance:
+        return
+    
     is_new_cover = instance.cover_image != old_instance.cover_image
     if old_instance or is_new_cover:
         delete_cover(old_instance)
