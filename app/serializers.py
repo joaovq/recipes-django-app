@@ -34,7 +34,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'tag_links',
             'preparation_time', 'preparation_time_unit',
             'servings_unit',
-            'preparation_steps', 'cover_image'
+            'preparation_steps',
+            'cover_image'
         ]
     public = serializers.BooleanField(
         source='is_published',
