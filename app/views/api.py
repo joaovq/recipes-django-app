@@ -27,10 +27,10 @@ class RecipeApiv2ViewSet(ModelViewSet):
     def get_queryset(self):
         qs = super().get_queryset()
 
-        category_id = self.request.query_params.get('category_id', None)
+        category_id = self.request.query_params.get('category_id', '')
 
-        if category_id != '' and category_id.is_numeric():
-            qs = qs.filter(category_id=category_id)
+        if category_id != '' and category_id.isnumeric():
+                qs = qs.filter(category_id=category_id)
 
         return qs
 
@@ -57,8 +57,6 @@ class RecipeApiv2ViewSet(ModelViewSet):
         return super().get_permissions()
 
     def list(self, request, *args, **kwargs):
-        print('REQUEST', request.user)
-        print(request.user.is_authenticated)
         return super().list(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
