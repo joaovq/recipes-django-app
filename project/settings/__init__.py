@@ -4,6 +4,7 @@ from .middlewares import *
 from .databases import *
 from .templates import *
 from .security import *
+from .rest_framework import *
 from .i18n import *
 from .assets import *
 from .messages import *
